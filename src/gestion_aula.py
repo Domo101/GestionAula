@@ -1,3 +1,5 @@
+import sys
+
 def mostrar_clase(clase):
     """mostrar la clase por pantalla"""
     num_alumno = 0
@@ -13,14 +15,23 @@ def nuevo_alumno():
     print(f"Saludos {alumno}!")
     return alumno
 
+def capturar_argumento():
+    """comprobar argumentos"""
+    if len(sys.argv) > 1:
+        return sys.argv[1]
+    else:
+        return "unknownsoldier"
+
 # definir
 clase = ["acenha", "jorge", "alex"]
 
 # nuevo alumno
-n_a = nuevo_alumno()
+n_a1 = capturar_argumento()
+n_a2 = nuevo_alumno()
 
 # añadir
-clase.append(n_a)
+clase.append(n_a1)
+clase.append(n_a2)
 
 # ordenar
 clase.sort()
