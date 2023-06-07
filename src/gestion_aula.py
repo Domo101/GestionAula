@@ -1,6 +1,6 @@
-import sys
 import json
 import random
+
 
 def guardar_clase(clase):
     """guarda la clase en un fichero"""
@@ -19,6 +19,7 @@ def guardar_clase(clase):
 
     # cerramos archivo
     archivo.close()
+
 
 def cargar_clase():
     """cargar la clase desde un fichero"""
@@ -40,45 +41,39 @@ def cargar_clase():
     # retornamos el array de la clase
     return clase
 
+
+def nuevo_alumno():
+    """pedir nuevo alumno al ususario"""
+    alumno = dict(nombre=input("inserte nuevo alumno: "), positivos=0)
+    print(f"Saludos {alumno['nombre']}!")
+    return alumno
+
+
+def esta_en_clase(alumno_entrada, clase):
+    """comprobar si alumno esta en la clase"""
+    for alumno in clase:
+        if alumno["nombre"] == alumno_entrada["nombre"]:
+            return True
+    return False
+
+
+def seleccionar_alumno_random(clase):
+    indice_random = random.randint(0, len(clase) - 1)
+    return clase[indice_random]
+
+
+def print_alumno(alumno):
+    return f"{alumno['nombre'].capitalize()} ({alumno['positivos']})"
+
+
 def mostrar_clase(clase):
     """mostrar la clase por pantalla"""
     num_alumno = 0
     for alumno in clase:
         num_alumno = num_alumno + 1
         # num_alumno: nombre_alumno
-        # print(str(num_alumno) + ": " + alumno)
-        print(f"{num_alumno}: {alumno.capitalize()}")
+        print(f"{num_alumno}: {print_alumno(alumno)}")
 
-def capturar_entrada_usuario():
-    """pedir nuevo alumno al ususario"""
-    alumno = input("inserte nuevo alumno: ")
-    print(f"Saludos {alumno}!")
-    return alumno
-
-def capturar_argumento():
-    """comprobar argumentos"""
-    if len(sys.argv) > 1:
-        return sys.argv[1]
-    else:
-        return "unknownsoldier"
-
-def nuevo_alumno():
-    """decidir de que manera se añade un nuevo alumno"""
-    if len(sys.argv) > 1:
-        return capturar_argumento()
-    else:
-        return capturar_entrada_usuario()
-
-def esta_en_clase(alumno_entrada, clase):
-    """comprobar si alumno esta en la clase"""
-    for alumno in clase:
-        if alumno == alumno_entrada:
-            return True
-    return False
-
-def seleccionar_alumno_random(clase):
-    indice_random = random.randint(0, len(clase) - 1)
-    return clase[indice_random]
 
 def bucle_decisiones(clase):
     """bucle de decisiones"""
@@ -92,7 +87,7 @@ def bucle_decisiones(clase):
         elif decision == "r":
             # seleccionar alumno random
             print(
-                f"Seleccionado: {seleccionar_alumno_random(clase)}")
+                f"Seleccionado: {print_alumno(seleccionar_alumno_random(clase))}")
         elif decision == "n":
             # nuevo alumno
             n_alumno = nuevo_alumno()
@@ -105,6 +100,7 @@ def bucle_decisiones(clase):
                 guardar_clase(clase)
             else:
                 print(f"{n_alumno} ya esta en clase")
+
 
 # definir
 clase = cargar_clase()
