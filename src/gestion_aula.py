@@ -1,5 +1,24 @@
 import sys
+import json
 import random
+
+def guardar_clase(clase):
+    """guarda la clase en un fichero"""
+    # escribir en un archivo
+
+    # w: para escribir en el
+    # r: para leer
+    # +: para crearlo si no existe
+    archivo = open("bd.json", "w+")
+
+    # pasamos la clase a un string en formato json
+    clase_en_json = json.dumps(clase)
+
+    # lo enchuflamos al archivo
+    archivo.write(clase_en_json)
+
+    # cerramos archivo
+    archivo.close()
 
 def mostrar_clase(clase):
     """mostrar la clase por pantalla"""
