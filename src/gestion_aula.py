@@ -9,7 +9,7 @@ def mostrar_clase(clase):
         # print(str(num_alumno) + ": " + alumno)
         print(f"{num_alumno}: {alumno.capitalize()}")
 
-def nuevo_alumno():
+def capturar_entrada_usuario():
     """pedir nuevo alumno al ususario"""
     alumno = input("inserte nuevo alumno: ")
     print(f"Saludos {alumno}!")
@@ -22,16 +22,20 @@ def capturar_argumento():
     else:
         return "unknownsoldier"
 
+def nuevo_alumno():
+    if len(sys.argv) > 1:
+        return capturar_argumento()
+    else:
+        return capturar_entrada_usuario()
+
 # definir
 clase = ["acenha", "jorge", "alex"]
 
 # nuevo alumno
-n_a1 = capturar_argumento()
-n_a2 = nuevo_alumno()
+n_a = nuevo_alumno()
 
 # añadir
-clase.append(n_a1)
-clase.append(n_a2)
+clase.append(n_a)
 
 # ordenar
 clase.sort()
