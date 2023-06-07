@@ -1,3 +1,4 @@
+import csv
 import json
 import random
 
@@ -9,7 +10,7 @@ def guardar_clase(clase):
     # w: para escribir en el
     # r: para leer
     # +: para crearlo si no existe
-    archivo = open("bd.json", "w+")
+    archivo = open("./bd.json", "w+")
 
     # pasamos la clase a un string en formato json
     clase_en_json = json.dumps(clase)
@@ -36,6 +37,7 @@ def cargar_clase():
         archivo.close()
 
     except FileNotFoundError:
+        print("No se ha encontrado bd.json")
         clase = list()
 
     # retornamos el array de la clase
@@ -75,12 +77,22 @@ def mostrar_clase(clase):
         print(f"{num_alumno}: {print_alumno(alumno)}")
 
 
+def volcar_datos(clase):
+    with open('clase.csv', 'w', newline='') as archivo_csv:
+        nombres_columnas = ['nombre', 'positivos']
+        writer = csv.DictWriter(archivo_csv, fieldnames=nombres_columnas)
+
+        writer.writeheader()
+        for alumno in clase:
+            writer.writerow(alumno)
+
+
 def bucle_decisiones(clase):
     """bucle de decisiones"""
     decision = ""
     while decision != "q":
         decision = input(
-            "Accion \n\t(q/salir) \n\t(r/random) \n\t(m/mostrar) \n\t(n/nuevo)\n-> ")
+            "Accion \n\t(q/salir) \n\t(r/random) \n\t(m/mostrar) \n\t(v/volcar) \n\t(n/nuevo)\n-> ")
         if decision == "m":
             # mostrar clase
             mostrar_clase(clase)
@@ -96,10 +108,13 @@ def bucle_decisiones(clase):
             if not esta_en_clase(n_alumno, clase):
                 # si no esta meterlo en la clase y ordenar
                 clase.append(n_alumno)
+                # clase.sort()
                 # guardamos la clase
                 guardar_clase(clase)
             else:
                 print(f"{n_alumno} ya esta en clase")
+        elif decision == "v":
+            volcar_datos(clase)
 
 
 # definir
