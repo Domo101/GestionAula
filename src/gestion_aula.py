@@ -1,4 +1,5 @@
 import sys
+import random
 
 def mostrar_clase(clase):
     """mostrar la clase por pantalla"""
@@ -36,6 +37,10 @@ def esta_en_clase(alumno_entrada, clase):
             return True
     return False
 
+def seleccionar_alumno_random(clase):
+    indice_random = random.randint(0, len(clase) - 1)
+    return clase[indice_random]
+
 # definir
 clase = ["acenha", "jorge", "alex"]
 
@@ -47,10 +52,13 @@ if not esta_en_clase(n_a, clase):
     # añadir
     clase.append(n_a)
 else:
-    print(f"{n_a} ya esta en clase")
+    print(f"{n_a.capitalize()} ya esta en clase")
 
 # ordenar
 clase.sort()
 
 # mostrar
 mostrar_clase(clase)
+
+# seleccionar alumno random
+print(f"Seleccionado: {seleccionar_alumno_random(clase).capitalize()}")
