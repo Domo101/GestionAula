@@ -80,24 +80,34 @@ def seleccionar_alumno_random(clase):
     indice_random = random.randint(0, len(clase) - 1)
     return clase[indice_random]
 
+def bucle_decisiones(clase):
+    """bucle de decisiones"""
+    decision = ""
+    while decision != "q":
+        decision = input(
+            "Accion \n\t(q/salir) \n\t(r/random) \n\t(m/mostrar) \n\t(n/nuevo)\n-> ")
+        if decision == "m":
+            # mostrar clase
+            mostrar_clase(clase)
+        elif decision == "r":
+            # seleccionar alumno random
+            print(
+                f"Seleccionado: {seleccionar_alumno_random(clase)}")
+        elif decision == "n":
+            # nuevo alumno
+            n_alumno = nuevo_alumno()
+
+            # comprobar si esta en clase
+            if not esta_en_clase(n_alumno, clase):
+                # si no esta meterlo en la clase y ordenar
+                clase.append(n_alumno)
+                # guardamos la clase
+                guardar_clase(clase)
+            else:
+                print(f"{n_alumno} ya esta en clase")
+
 # definir
-clase = ["acenha", "jorge", "alex"]
+clase = cargar_clase()
 
-# nuevo alumno
-n_a = nuevo_alumno()
-
-# comprobar repetido
-if not esta_en_clase(n_a, clase):
-    # añadir
-    clase.append(n_a)
-else:
-    print(f"{n_a.capitalize()} ya esta en clase")
-
-# ordenar
-clase.sort()
-
-# mostrar
-mostrar_clase(clase)
-
-# seleccionar alumno random
-print(f"Seleccionado: {seleccionar_alumno_random(clase).capitalize()}")
+# bucle decisiones
+bucle_decisiones(clase)
