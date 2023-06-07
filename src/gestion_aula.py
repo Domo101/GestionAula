@@ -87,12 +87,36 @@ def volcar_datos(clase):
             writer.writerow(alumno)
 
 
+def seleccionar_alumno(clase):
+    mostrar_clase(clase)
+    num_alumno = int(input("Alumno: "))
+    return clase[num_alumno - 1]
+
+
+def positivo(alumno, clase):
+    for al in clase:
+        if alumno["nombre"] == al["nombre"]:
+            al["positivos"] = al["positivos"] + 1
+            print(f"Positivo: {print_alumno(al)}")
+
+
+def submenu_seleccionar(clase):
+    """submenu de acciones sobre alumno"""
+    alumno = seleccionar_alumno(clase)
+    print(f"Seleccionado: {print_alumno(alumno)}")
+    decision = ""
+    while decision != "r":
+        decision = input("Seleccionar \n\t(+/positivo) \n\t(r/return)\n-> ")
+        if decision == "+":
+            positivo(alumno, clase)
+
+
 def bucle_decisiones(clase):
     """bucle de decisiones"""
     decision = ""
     while decision != "q":
         decision = input(
-            "Accion \n\t(q/salir) \n\t(r/random) \n\t(m/mostrar) \n\t(v/volcar) \n\t(n/nuevo)\n-> ")
+            "Accion \n\t(q/salir) \n\t(r/random) \n\t(m/mostrar) \n\t(v/volcar) \n\t(s/seleccionar) \n\t(n/nuevo)\n-> ")
         if decision == "m":
             # mostrar clase
             mostrar_clase(clase)
@@ -108,13 +132,14 @@ def bucle_decisiones(clase):
             if not esta_en_clase(n_alumno, clase):
                 # si no esta meterlo en la clase y ordenar
                 clase.append(n_alumno)
-                # clase.sort()
                 # guardamos la clase
                 guardar_clase(clase)
             else:
                 print(f"{n_alumno} ya esta en clase")
         elif decision == "v":
             volcar_datos(clase)
+        elif decision == "s":
+            submenu_seleccionar(clase)
 
 
 # definir
