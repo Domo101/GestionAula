@@ -1,7 +1,15 @@
+def mostrar_clase(clase):
+    num_alumno = 0
+    for alumno in clase:
+        num_alumno = num_alumno + 1
+        # num_alumno: nombre_alumno
+        print(f"{num_alumno}: {alumno.capitalize()}")
+
 # definir
-clase = sorted(["acenha", "jorge", "alex"])
+clase = ["acenha", "jorge", "alex"]
 
 # ordenar
+clase.sort()
 
 # mostrar
-print(clase)
+mostrar_clase(clase)
