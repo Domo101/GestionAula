@@ -23,10 +23,18 @@ def capturar_argumento():
         return "unknownsoldier"
 
 def nuevo_alumno():
+    """decidir de que manera se añade un nuevo alumno"""
     if len(sys.argv) > 1:
         return capturar_argumento()
     else:
         return capturar_entrada_usuario()
+
+def esta_en_clase(alumno_entrada, clase):
+    """comprobar si alumno esta en la clase"""
+    for alumno in clase:
+        if alumno == alumno_entrada:
+            return True
+    return False
 
 # definir
 clase = ["acenha", "jorge", "alex"]
@@ -34,8 +42,12 @@ clase = ["acenha", "jorge", "alex"]
 # nuevo alumno
 n_a = nuevo_alumno()
 
-# añadir
-clase.append(n_a)
+# comprobar repetido
+if not esta_en_clase(n_a, clase):
+    # añadir
+    clase.append(n_a)
+else:
+    print(f"{n_a} ya esta en clase")
 
 # ordenar
 clase.sort()
