@@ -20,6 +20,26 @@ def guardar_clase(clase):
     # cerramos archivo
     archivo.close()
 
+def cargar_clase():
+    """cargar la clase desde un fichero"""
+    try:
+        archivo = open("bd.json", "r")
+
+        # leemos el archivo
+        clase_en_json = archivo.read()
+
+        # pasar el string a un array
+        clase = json.loads(clase_en_json)
+
+        # cerramos el archivo
+        archivo.close()
+
+    except FileNotFoundError:
+        clase = list()
+
+    # retornamos el array de la clase
+    return clase
+
 def mostrar_clase(clase):
     """mostrar la clase por pantalla"""
     num_alumno = 0
