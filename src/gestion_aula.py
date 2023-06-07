@@ -106,4 +106,7 @@ def bucle_decisiones(clase):
 clase = cargar_clase()
 
 # bucle decisiones
-bucle_decisiones(clase)
+try:
+    bucle_decisiones(clase)
+except KeyboardInterrupt:
+    print("\nAdiosito!")
