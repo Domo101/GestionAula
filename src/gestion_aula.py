@@ -99,6 +99,12 @@ def positivo(alumno, clase):
             al["positivos"] = al["positivos"] + 1
             print(f"Positivo: {print_alumno(al)}")
 
+def faltas(alumno, clase):
+    for al in clase:
+        if alumno["nombre"] == al["nombre"]:
+            al["faltas"] = al["faltas"] + 1
+            print(f"faltas: {print_alumno(al)}")
+
 
 def negativo(alumno, clase):
     for al in clase:
@@ -114,11 +120,13 @@ def submenu_seleccionar(clase):
     decision = ""
     while decision != "r":
         decision = input(
-            "Seleccionar \n\t(+/positivo) \n\t(-/negativo) \n\t(r/return)\n-> ")
+            "Seleccionar \n\t(+/positivo) \n\t(-/negativo) \n\t(f/faltas) \n\t(r/return)\n-> ")
         if decision == "+":
             positivo(alumno, clase)
         elif decision == "-":
             negativo(alumno, clase)
+        elif decision == "f":
+            faltas(alumno, clase)
 
 
 def bucle_decisiones(clase):
