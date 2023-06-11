@@ -55,10 +55,9 @@ def nuevo_alumno():
 def borrar_alumno():
     """pedir que el usuario borre un alumno de la lista"""
     mostrar_clase(clase)
-    i = input("numero de alumno a borrar de la lista: ")
-    print("Bye bye " + str(clase[int(i)-1]['nombre']) + "!")
-    del clase[int(i)-1]
-    #print("bye bye alumno numero " + str(int(i)) + "!")
+    i = int(input("numero de alumno a borrar de la lista: "))
+    print("Bye bye " + str(clase[i-1]['nombre']) + "!")
+    del clase[i-1]
     mostrar_clase(clase)
 
 
