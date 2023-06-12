@@ -1,1 +1,1 @@
-find . -type f -name "*.py" -exec autopep8 --in-place --recursive --aggressive {} \;
+autopep8 --exit-code --in-place --recursive --aggressive .
