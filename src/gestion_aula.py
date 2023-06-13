@@ -46,7 +46,9 @@ def cargar_clase():
 
 def nuevo_alumno():
     """pedir nuevo alumno al ususario"""
-    alumno = dict(nombre=input("inserte nuevo alumno: "), positivos=0)
+    alumno = dict(nombre=input("inserte nuevo alumno: "),
+                  positivos=0,
+                  faltas=0)
     print(f"Saludos {alumno['nombre']}!")
     return alumno
 
@@ -100,6 +102,13 @@ def positivo(alumno, clase):
             print(f"Positivo: {print_alumno(al)}")
 
 
+def faltas(alumno, clase):
+    for al in clase:
+        if alumno["nombre"] == al["nombre"]:
+            al["faltas"] = al["faltas"] + 1
+            print(f"faltas: {print_alumno(al)}")
+
+
 def negativo(alumno, clase):
     for al in clase:
         if alumno["nombre"] == al["nombre"]:
@@ -114,11 +123,15 @@ def submenu_seleccionar(clase):
     decision = ""
     while decision != "r":
         decision = input(
-            "Seleccionar \n\t(+/positivo) \n\t(-/negativo) \n\t(r/return)\n-> ")
+            "Seleccionar \n\t(+/positivo) \n\t(-/negativo) \n\t(f/faltas) \n\t(r/return)\n-> ")
         if decision == "+":
             positivo(alumno, clase)
         elif decision == "-":
             negativo(alumno, clase)
+        elif decision == "f":
+            faltas(alumno, clase)
+
+        guardar_clase(clase)
 
 
 def bucle_decisiones(clase):
