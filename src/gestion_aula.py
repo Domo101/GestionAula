@@ -66,8 +66,7 @@ def seleccionar_alumno_random(clase):
         indice_random = random.randint(0, len(clase) - 1)
         return clase[indice_random]
     except ValueError:
-        print("No hay alumnos en aún.")
-        nuevo_alumno()
+        print("La clase esta vacía.")
 
 
 def print_alumno(alumno):
