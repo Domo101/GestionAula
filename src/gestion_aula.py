@@ -67,6 +67,7 @@ def seleccionar_alumno_random(clase):
         return clase[indice_random]
     except ValueError:
         print("La clase esta vacía.")
+        return dict(nombre="UnknownSoldier", positivos=9999, faltas=-1)
 
 
 def print_alumno(alumno):
