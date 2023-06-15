@@ -46,7 +46,7 @@ def cargar_clase():
 
 def nuevo_alumno():
     """pedir nuevo alumno al ususario"""
-    alumno = dict(nombre=input("inserte nuevo alumno: "),
+    alumno = dict(nombre=input("Inserte nuevo alumno: "),
                   positivos=0,
                   faltas=0)
     print(f"Saludos {alumno['nombre']}!")
@@ -62,8 +62,12 @@ def esta_en_clase(alumno_entrada, clase):
 
 
 def seleccionar_alumno_random(clase):
-    indice_random = random.randint(0, len(clase) - 1)
-    return clase[indice_random]
+    try:
+        indice_random = random.randint(0, len(clase) - 1)
+        return clase[indice_random]
+    except ValueError:
+        print("La clase esta vacía.")
+        return dict(nombre="UnknownSoldier", positivos=9999, faltas=-1)
 
 
 def print_alumno(alumno):
