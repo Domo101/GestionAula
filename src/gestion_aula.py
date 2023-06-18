@@ -52,6 +52,14 @@ def nuevo_alumno():
     print(f"Saludos {alumno['nombre']}!")
     return alumno
 
+def borrar_alumno():
+    """pedir que el usuario borre un alumno de la lista"""
+    mostrar_clase(clase)
+    i = int(input("numero de alumno a borrar de la lista: "))
+    print("Bye bye " + str(clase[i-1]['nombre']) + "!")
+    del clase[i-1]
+    mostrar_clase(clase)
+
 
 def esta_en_clase(alumno_entrada, clase):
     """comprobar si alumno esta en la clase"""
@@ -143,7 +151,7 @@ def bucle_decisiones(clase):
     decision = ""
     while decision != "q":
         decision = input(
-            "Accion \n\t(q/salir) \n\t(r/random) \n\t(m/mostrar) \n\t(v/volcar) \n\t(s/seleccionar) \n\t(n/nuevo)\n-> ")
+            "Accion \n\t(q/salir) \n\t(r/random) \n\t(m/mostrar) \n\t(v/volcar) \n\t(s/seleccionar) \n\t(b/borrar) \n\t(n/nuevo)\n-> ")
         if decision == "m":
             # mostrar clase
             mostrar_clase(clase)
@@ -167,7 +175,8 @@ def bucle_decisiones(clase):
             volcar_datos(clase)
         elif decision == "s":
             submenu_seleccionar(clase)
-
+        elif decision == "b":
+            borrar_alumno()
 
 # definir
 clase = cargar_clase()
