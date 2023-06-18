@@ -80,7 +80,7 @@ def mostrar_clase(clase):
     for alumno in clase:
         num_alumno = num_alumno + 1
         # num_alumno: nombre_alumno
-        print(f"{num_alumno}: {print_alumno(alumno)}")
+        print(f"{num_alumno}: {print_alumno(alumno)}", (f"faltas: {print_alumno(al)}"))
 
 
 def volcar_datos(clase):
